@@ -139,9 +139,9 @@ async function evaluateParts() {
 }
 
 async function exploreTopLevel() {
-  let url = document.getElementById('url').value[0];
+  let url = document.getElementById('url').value;
   let suppressed = document.getElementById('suppressed').checked;
-  let credentials = document.getElementById('credentials').value[0];
+  let credentials = document.getElementById('credentials').value;
 
   if (url == '' || credentials == '') {
     return;
@@ -154,6 +154,8 @@ async function exploreTopLevel() {
   let d = '/d/' + url.slice(dPos + 11, wvmPos);
   let wvm = url.slice(wvmPos, ePos);
   let e = url.slice(ePos);
+
+  console.log([[d],[wvm],[e]]);
 
   console.log('Exploring assembly...');
   await exploreAssembly(d, wvm, e, suppressed, credentials);
